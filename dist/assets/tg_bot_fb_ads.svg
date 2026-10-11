@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-label="Illustrative campaign report">
+  <rect width="700" height="380" fill="#d8ecdd"/>
+  <rect x="33" y="30" width="634" height="320" rx="22" fill="white"/>
+  <text x="58" y="79" fill="#1c3c36" font-family="Arial,sans-serif" font-size="23" font-weight="700">Campaign overview</text>
+  <g fill="#d9e8de"><rect x="58" y="100" width="306" height="10" rx="5"/><rect x="58" y="121" width="245" height="10" rx="5"/></g>
+  <g fill="#f1f7f2" stroke="#d6e6da"><rect x="57" y="157" width="183" height="79" rx="13"/><rect x="257" y="157" width="183" height="79" rx="13"/><rect x="457" y="157" width="183" height="79" rx="13"/></g>
+  <g fill="#75b68b"><rect x="78" y="178" width="105" height="10" rx="5"/><rect x="278" y="178" width="105" height="10" rx="5"/><rect x="478" y="178" width="105" height="10" rx="5"/></g>
+  <g fill="#aed4b8"><rect x="78" y="204" width="72" height="13" rx="6"/><rect x="278" y="204" width="72" height="13" rx="6"/><rect x="478" y="204" width="72" height="13" rx="6"/></g>
+  <path d="M60 303c75-37 112-15 173-45 66-32 97 8 165-20 66-28 92 27 151-6 35-19 54-30 88-24" fill="none" stroke="#3d9d67" stroke-width="8" stroke-linecap="round"/>
+</svg>

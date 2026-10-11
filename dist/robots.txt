@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rami-heb.joyfulaiteam.net/sitemap.xml

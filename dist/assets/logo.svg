@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">רמי חירסונסקי</title>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9b71ed"/><stop offset="1" stop-color="#5931ba"/></linearGradient></defs>
+  <rect width="64" height="64" rx="18" fill="url(#g)"/>
+  <path d="M18 20.5h26v23" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="18.5" cy="43" r="4" fill="#d9c7ff"/>
+  <path d="M18.5 43 29 33" fill="none" stroke="#d9c7ff" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="29" cy="33" r="4" fill="#fff"/>
+</svg>

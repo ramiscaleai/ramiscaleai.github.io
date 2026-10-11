@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" role="img" aria-label="Illustrative campaign assistant chat">
+  <rect width="700" height="380" fill="#d8ecdd"/>
+  <rect x="44" y="38" width="405" height="50" rx="19" fill="#9dd9ab"/>
+  <g fill="#67a478"><rect x="67" y="57" width="295" height="9" rx="4"/></g>
+  <rect x="76" y="112" width="574" height="229" rx="21" fill="white"/>
+  <text x="104" y="156" fill="#1c3c36" font-family="Arial,sans-serif" font-size="22" font-weight="700">AI campaign assistant</text>
+  <g fill="#c9ddd0"><rect x="105" y="184" width="482" height="10" rx="5"/><rect x="105" y="209" width="435" height="10" rx="5"/><rect x="105" y="234" width="460" height="10" rx="5"/><rect x="105" y="259" width="384" height="10" rx="5"/></g>
+  <rect x="105" y="296" width="169" height="24" rx="12" fill="#e5f3e8"/>
+</svg>

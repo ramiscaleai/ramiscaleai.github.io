@@ -1,0 +1,161 @@
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { createHash } from 'node:crypto';
+
+const out = join(import.meta.dirname, 'dist');
+const assetVersion = createHash('sha256').update(await readFile(join(out, 'styles.css'))).update(await readFile(join(out, 'site.js'))).digest('hex').slice(0, 10);
+const site = 'https://rami-heb.joyfulaiteam.net';
+const phone = '0544332910';
+const wa = 'https://wa.me/972544332910';
+const waIntro = `${wa}?text=${encodeURIComponent('שלום רמי, אשמח לשמוע על פתרון AI לעסק שלי')}`;
+
+const icon = {
+  arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7 7-7-7 7-7"/></svg>',
+  external: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>',
+  whatsapp: '<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 .7A15.2 15.2 0 0 0 2.9 23.5L.8 31.2l7.9-2.1A15.3 15.3 0 1 0 16 .7Zm0 27.7a12.4 12.4 0 0 1-6.3-1.7l-.5-.3-4.7 1.2 1.3-4.6-.3-.5A12.5 12.5 0 1 1 16 28.4Zm6.9-9.4c-.4-.2-2.3-1.1-2.7-1.2-.4-.2-.7-.2-1 .2s-1.1 1.2-1.3 1.4c-.3.2-.5.3-.9.1-2.4-1.1-3.9-2-5.5-4.8-.4-.7.4-.7 1-1.8.2-.3.1-.6 0-.8l-1.2-2.8c-.3-.7-.6-.6-.9-.6h-.8c-.3 0-.8.1-1.2.6-.4.4-1.5 1.5-1.5 3.6s1.5 4.2 1.7 4.5c.2.3 3 4.6 7.3 6.4 2.7 1.1 3.8 1.2 5.2 1 1.6-.3 2.3-1.4 2.5-2.4.2-1 .2-1.9.1-2.1-.1-.2-.4-.3-.8-.5Z"/></svg>',
+  linkedin: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.1 3a2.1 2.1 0 1 1 0 4.2 2.1 2.1 0 0 1 0-4.2ZM3.3 9h3.6v12H3.3V9Zm5.8 0h3.5v1.6h.1c.5-.9 1.7-1.8 3.5-1.8 3.8 0 4.5 2.3 4.5 5.3V21h-3.6v-6.1c0-1.5 0-3.3-2-3.3s-2.3 1.6-2.3 3.2V21H9.1V9Z"/></svg>',
+  facebook: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.7-3.9 1 0 2 .2 2 .2v2.4H15c-1.1 0-1.4.7-1.4 1.4V12h2.4l-.4 2.9h-2V22A10 10 0 0 0 22 12Z"/></svg>',
+  spark: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 1.7 6.3L20 10l-6.3 1.7L12 18l-1.7-6.3L4 10l6.3-1.7L12 2ZM19 17l.6 1.4L21 19l-1.4.6L19 21l-.6-1.4L17 19l1.4-.6L19 17Z"/></svg>',
+  play: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3V9Z"/></svg>',
+  chat: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-8 8 8.4 8.4 0 0 1-3.3-.7L4 20l1.3-4.4A8 8 0 1 1 20 11.5Z"/><path d="M8 11h8M8 14h5"/></svg>',
+  chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5m0 14h16M8 15l4-4 3 2 5-6"/><path d="M17 7h3v3"/></svg>'
+};
+
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const json = (o) => JSON.stringify(o).replace(/</g, '\\u003c');
+const image = (src, alt, cls = '') => `<img class="${cls}" src="/assets/${src}" alt="${esc(alt)}" loading="lazy" decoding="async">`;
+const waButton = (label, cls = '') => `<a class="btn btn-wa ${cls}" href="${waIntro}" target="_blank" rel="noopener noreferrer">${icon.whatsapp}<span>${label}</span></a>`;
+const purpleButton = (label, href, cls = '') => `<a class="btn btn-purple ${cls}" href="${href}"><span>${label}</span>${icon.arrow}</a>`;
+const logo = `<a class="brand" href="/" aria-label="רמי חירסונסקי - עמוד הבית"><img src="/assets/logo.svg" width="44" height="44" alt=""><span class="brand-wordmark"><strong>רמי חירסונסקי</strong><small>AI • AUTOMATION</small></span></a>`;
+
+function header(current = '') {
+  return `<header class="site-header"><div class="container header-inner">${logo}<nav class="desktop-nav" aria-label="ניווט ראשי"><a href="/#projects"${current === 'projects' ? ' aria-current="page"' : ''}>פרויקטים</a><a href="/#services">מה אני עושה</a><a href="/#about">אודות</a><a href="/#reviews">המלצות</a><a href="/#contact">יצירת קשר</a></nav><div class="header-actions">${purpleButton('בואו נדבר', '/#contact', 'header-cta')}<button class="menu-toggle" type="button" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="mobile-nav"><span></span><span></span><span></span></button></div></div><nav id="mobile-nav" class="mobile-nav" aria-label="ניווט נייד" hidden><a href="/#projects">פרויקטים</a><a href="/#services">מה אני עושה</a><a href="/#about">אודות</a><a href="/#reviews">המלצות</a><a href="/#contact">יצירת קשר</a></nav></header>`;
+}
+
+function footer() {
+  return `<footer class="site-footer"><div class="container"><div class="footer-top"><div class="footer-brand">${logo}<p>פתרונות AI ואוטומציה שנבנים סביב הצורך האמיתי של העסק.</p></div><div class="footer-links"><strong>ניווט</strong><a href="/#projects">פרויקטים</a><a href="/whatsapp-ai-bot/">בוט וואטסאפ</a><a href="/telegram-facebook-ads/">ניהול קמפיינים</a><a href="/ai-video-creation/">יצירת וידאו ב-AI</a></div><div class="footer-links"><strong>יוצרים קשר</strong><a href="tel:+972544332910" dir="ltr">${phone}</a><div class="social-links"><a href="https://www.linkedin.com/in/rami-hersonsky/" target="_blank" rel="noopener noreferrer" aria-label="לינקדאין">${icon.linkedin}</a><a href="https://www.facebook.com/profile.php?id=61553146012968" target="_blank" rel="noopener noreferrer" aria-label="פייסבוק">${icon.facebook}</a></div></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} רמי חירסונסקי. כל הזכויות שמורות.</span><span>נבנה עם מחשבה על אנשים, עסקים וטכנולוגיה.</span></div></div></footer><a class="floating-wa" href="${waIntro}" target="_blank" rel="noopener noreferrer" aria-label="שליחת הודעה לרמי בוואטסאפ">${icon.whatsapp}<span>נדבר בוואטסאפ</span></a><dialog class="lightbox" aria-label="תצוגת תמונה"><form method="dialog"><button aria-label="סגירת תמונה" type="submit">×</button></form><img alt=""><p></p></dialog>`;
+}
+
+const personSchema = {
+  '@context':'https://schema.org', '@type':'Person', name:'רמי חירסונסקי', alternateName:'Rami Hersonsky',
+  url: site + '/', image: site + '/assets/rami.png', telephone:'+972544332910',
+  sameAs:['https://www.linkedin.com/in/rami-hersonsky/','https://www.facebook.com/profile.php?id=61553146012968']
+};
+
+function page({title, description, path, content, schema = [], pageClass = ''}) {
+  const canonical = site + path;
+  const structured = [personSchema, ...schema];
+  return `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#1c1530"><meta name="robots" content="index,follow,max-image-preview:large"><title>${esc(title)}</title><meta name="description" content="${esc(description)}"><link rel="canonical" href="${canonical}"><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><link rel="stylesheet" href="/styles.css?v=${assetVersion}"><meta property="og:type" content="website"><meta property="og:locale" content="he_IL"><meta property="og:site_name" content="רמי חירסונסקי"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="${site}/assets/og-card.png"><meta name="twitter:card" content="summary_large_image"><script type="application/ld+json">${json(structured)}</script></head><body class="${pageClass}"><a class="skip-link" href="#main">דלג לתוכן</a>${header()}<main id="main">${content}</main>${footer()}<script src="/site.js?v=${assetVersion}" defer></script></body></html>`;
+}
+
+const projects = [
+  {
+    no:'01', kind:'תוכן בקנה מידה', title:'מערכת יצירת וידאו עם AI',
+    description:'סטודיו תוכן שמתחיל בפרומפט ומאפשר ליצור וריאציות וידאו רבות, לצפות בתוצרים ולעבור עליהם במקום אחד.',
+    path:'/ai-video-creation/', tag:'AI Content Studio', icon:icon.play,
+    images:[['video_creation1.svg','הדמיה כללית של יצירת תוכן במערכת וידאו מבוססת AI'],['video_creation2.svg','הדמיה כללית של ספריית סרטונים ותהליך סקירה']], mediaClass:'project-media-video'
+  },
+  {
+    no:'02', kind:'שיחה חכמה', title:'בוט וואטסאפ שממשיך את השיחה',
+    description:'מערכת שיחה לעסק: מענה לשאלות, הבנת הצורך של הפונה והכוונה לצעד הבא — בתוך הערוץ שבו הלקוחות כבר נמצאים.',
+    path:'/whatsapp-ai-bot/', tag:'WhatsApp AI', icon:icon.chat,
+    images:[['wa_bot.svg','הדמיה כללית של מערכת בוט וואטסאפ ושיחה עסקית']], mediaClass:'project-media-wa'
+  },
+  {
+    no:'03', kind:'ניהול קמפיינים', title:'בוט טלגרם לקמפיינים בפייסבוק',
+    description:'ממשק שיחתי שמסייע ליצור, לערוך ולנהל קמפיינים, לבקש דוחות ולבחון ביצועים בלי ללכת לאיבוד בין מסכים.',
+    path:'/telegram-facebook-ads/', tag:'Telegram × Meta Ads', icon:icon.chart,
+    images:[['tg_bot_fb_ads2.svg','הדמיה כללית של יכולות ניתוח קמפיינים'],['tg_bot_fb_ads.svg','הדמיה כללית של דוח קמפיין בבוט טלגרם']], mediaClass:'project-media-telegram'
+  }
+];
+
+const reviews = [
+  {quote:'רמי מבין עניין בבינה מלאכותית הביא לי הרבה כלים פרקטיים. בחור רציני. תודה רבה',name:'לקוח בתחום האוטומציה',role:''},
+  {quote:'ממליצה בחום, נותן נקודות פרקטיות שניתן מייד לבצע בעסק',name:'לקוחה בתחום ההדרכה',role:''},
+  {quote:'מקצוען אמיתי, עם הרבה ידע ונכונות לסייע ממליצה בחום.',name:'לקוחה בתחום הייעוץ',role:''},
+  {quote:'הייתה לי ולאיש השיווק שלנו שיחה מאוד מעניינת עם רמי על בינה מלאכותית, אוטומציה ושיווק. בחור רציני, יסודי, שמבין את התחום',name:'לקוח בתחום הניהול',role:''}
+];
+
+const projectCard = (p) => `<article class="project-card"><div class="project-copy"><div class="project-num"><span>${p.no}</span><span>${p.kind}</span></div><div class="project-icon">${p.icon}</div><h3>${p.title}</h3><p>${p.description}</p><a class="text-link" href="${p.path}">לגלות את הפרויקט ${icon.arrow}</a></div><div class="project-media ${p.mediaClass}"><div class="media-topline"><span class="media-dots"><i></i><i></i><i></i></span><span dir="ltr">${p.tag}</span></div>${p.images.map(([src,alt],i) => `<button class="image-open image-open-${i+1}" type="button" data-full="/assets/${src}" data-caption="${esc(alt)}" aria-label="הגדלת תמונה: ${esc(alt)}">${image(src,alt)}</button>`).join('')}<span class="media-shine" aria-hidden="true"></span></div></article>`;
+
+const homeContent = `<section class="hero"><div class="hero-glow" aria-hidden="true"></div><div class="container hero-grid"><div class="hero-content"><div class="eyebrow"><span class="eyebrow-dot"></span> פתרונות AI ואוטומציה לעסקים</div><h1>רעיונות טובים.<br><em>מערכות שעובדות.</em></h1><p class="hero-lede">אני רמי חירסונסקי. אני בונה פתרונות בינה מלאכותית שמחברים בין שיווק, תוכן ושירות — והופכים תהליך מורכב לחוויה פשוטה.</p><div class="hero-actions">${purpleButton('לגלות את הפרויקטים', '#projects')}${waButton('בואו נדבר בוואטסאפ')}</div><div class="hero-proof"><span class="proof-line"></span><span>אפיון מדויק</span><b>·</b><span>פיתוח מעשי</span><b>·</b><span>חשיבה עסקית</span></div></div><div class="hero-art" aria-label="תצוגה של מערכות AI ואוטומציה"><div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div><div class="hero-panel"><div class="hero-panel-top"><div class="mini-logo">${icon.spark}</div><span>הדברים מתחברים</span><span class="live-indicator"><i></i> LIVE</span></div><div class="flow-item"><div class="flow-glyph">${icon.chat}</div><div><small>שיחה נכנסת</small><strong>לקוח פונה בערוץ המועדף עליו</strong></div><span>01</span></div><div class="flow-connector"></div><div class="flow-item flow-item-active"><div class="flow-glyph">${icon.spark}</div><div><small>חשיבה חכמה</small><strong>המערכת מבינה ומקדמת את התהליך</strong></div><span>02</span></div><div class="flow-connector"></div><div class="flow-item"><div class="flow-glyph">${icon.chart}</div><div><small>תוצאה שימושית</small><strong>מידע, תוכן או פעולה במקום הנכון</strong></div><span>03</span></div></div><div class="art-badge art-badge-top">AI <span>עם מטרה</span></div><div class="art-badge art-badge-bottom"><span class="badge-spark">✳</span> נבנה סביב העסק שלך</div></div></div><div class="hero-bottom container"><span>להפוך אפשרויות לפתרונות.</span><a href="#projects">גללו לראות איך <span aria-hidden="true">↓</span></a></div></section>
+<section class="intro section-pad" id="services"><div class="container intro-grid"><div class="section-heading"><span class="overline">מה אני עושה</span><h2>טכנולוגיה טובה<br><em>מתחילה בצורך אמיתי.</em></h2></div><div class="intro-copy"><p>כל פרויקט מתחיל בהבנה של האתגר העסקי, האנשים והתהליך. משם אפשר לבחור את הכלים הנכונים ולבנות מערכת שמתאימה לעבודה היומיומית — לא עוד הדגמה יפה שנשארת על המדף.</p><div class="service-pills"><a href="/whatsapp-ai-bot/">בוטים לשיחה ${icon.arrow}</a><a href="/telegram-facebook-ads/">אוטומציה לשיווק ${icon.arrow}</a><a href="/ai-video-creation/">יצירת תוכן ב-AI ${icon.arrow}</a></div></div></div></section>
+<section class="projects section-pad" id="projects"><div class="container"><div class="section-header"><div><span class="overline">פרויקטים נבחרים</span><h2>מערכות עם<br><em>עבודה אמיתית מאחוריהן.</em></h2></div><p>שלושה כיוונים שונים, אותה גישה: פחות חיכוך, יותר בהירות, וטכנולוגיה שמשרתת את התהליך.</p></div><div class="projects-list">${projects.map(projectCard).join('')}</div></div></section>
+<section class="method section-pad"><div class="container method-wrap"><div class="method-heading"><span class="overline">הדרך לעבודה משותפת</span><h2>מהרעיון שלכם<br><em>למערכת שאפשר להשתמש בה.</em></h2><p>עובדים בשלבים ברורים, עם מקום לשאול שאלות, לדייק ולשפר לאורך הדרך.</p>${purpleButton('בואו נתחיל בשיחה', '#contact')}</div><div class="method-steps"><div><span>01</span><h3>מגדירים את הבעיה</h3><p>מבינים מי משתמש במערכת, מה קורה היום ואיפה אפשר ליצור ערך אמיתי.</p></div><div><span>02</span><h3>בונים פתרון מתאים</h3><p>מתכננים חוויית שימוש ותהליך עבודה שמתאים לצוות, לערוצים ולמטרות.</p></div><div><span>03</span><h3>מחדדים לפי שימוש</h3><p>רואים את התוצאה בפעולה ומשפרים לפי מה שבאמת קורה בשטח.</p></div></div></div></section>
+<section class="about section-pad" id="about"><div class="container about-grid"><div class="about-visual">${image('rami.png','רמי חירסונסקי','about-portrait')}<div class="about-visual-bottom"><span>רמי חירסונסקי</span><span dir="ltr">AI / AUTOMATION / SOFTWARE</span></div></div><div class="about-copy"><span class="overline">נעים להכיר</span><h2>חיבור בין<br><em>הנדסת תוכנה לחשיבה עסקית.</em></h2><p>אני רמי חירסונסקי, מהנדס תוכנה ובונה מערכות AI ואוטומציה. העבודה שלי מחברת ניסיון טכנולוגי עם הבנה של תהליכים, שיווק ותוכן — כדי שהפתרון יהיה גם חכם וגם שימושי.</p><p>עם יותר מ־15 שנות ניסיון בהנדסת תוכנה וניהול, אני אוהב לקחת רעיון מורכב ולתת לו צורה ברורה שאנשים יכולים לעבוד איתה.</p><a class="text-link" href="https://joyfulaicourses.com/" target="_blank" rel="noopener noreferrer" hidden>לגלות גם את תחום ההדרכה ${icon.external}</a></div></div></section>
+<section class="reviews section-pad" id="reviews"><div class="container"><div class="section-header reviews-heading"><div><span class="overline">מילים של אנשים שעבדו איתי</span><h2>ההמלצות<br><em>מספרות את הסיפור.</em></h2></div><p>מה נשאר אחרי שיחה, חשיבה משותפת ועבודה על פתרון.</p></div><div class="review-grid">${reviews.map(r => `<figure class="review-card"><div class="stars" aria-label="5 מתוך 5 כוכבים">★★★★★</div><blockquote>״${esc(r.quote)}״</blockquote><figcaption>${r.photo ? image(r.photo, `צילום של ${r.name}`, 'review-avatar') : `<span class="review-avatar review-avatar-fallback" aria-hidden="true">${r.name[0]}</span>`}<span class="review-person"><strong>${r.name}</strong>${r.role ? `<small>${r.role}</small>` : ''}</span></figcaption></figure>`).join('')}</div></div></section>
+<section class="ecosystem section-pad"><div class="container"><div class="section-header"><div><span class="overline">עוד דרך לעבוד יחד</span><h2>אותה גישה.<br><em>עוד מקום להכיר.</em></h2></div><p>אפשר להכיר גם את שירותי הייעוץ והפיתוח של Joyful AI Team.</p></div><div class="ecosystem-grid"><a href="https://joyfulaiteam.com/" target="_blank" rel="noopener noreferrer"><span>01 / AI SOLUTIONS</span>${image('joyful-ai-team-logo.png','הלוגו המקורי של Joyful AI Team','ecosystem-logo')}<h3>Joyful AI Team</h3><p>ייעוץ, פיתוח ופתרונות AI לשיווק ולאוטומציה.</p>${icon.external}</a><a href="https://joyfulaicourses.com/" target="_blank" rel="noopener noreferrer" hidden><span>02 / LEARNING</span>${image('joyful-ai-team-logo.png','הלוגו המקורי המופיע באתר Joyful AI Courses','ecosystem-logo')}<h3>Joyful AI Courses</h3><p>הדרכה מעשית וכלים לעבודה עם בינה מלאכותית.</p>${icon.external}</a><a href="https://rentflowaimedia.com/" target="_blank" rel="noopener noreferrer" hidden><span>03 / CREATIVE TECH</span>${image('rentflow-cover.jpg','הלוגו המקורי של Rentflow AI Media','ecosystem-logo ecosystem-rentflow-logo')}<h3>Rentflow AI Media</h3><p>פתרונות תוכן, מדיה ושיווק בעזרת AI.</p>${icon.external}</a></div></div></section>
+<section class="contact section-pad" id="contact"><div class="container contact-wrap"><div class="contact-orbit" aria-hidden="true"></div><div class="contact-content"><span class="overline">הצעד הבא מתחיל כאן</span><h2>יש רעיון בראש?<br><em>בואו ניתן לו לעבוד.</em></h2><p>ספרו לי מה אתם רוצים לשפר או לבנות. ההודעה תגיע ישירות לרמי במייל.</p><div class="contact-actions">${waButton('שלחו לי הודעה בוואטסאפ')}<a class="contact-phone" href="tel:+972544332910" dir="ltr">${phone}</a></div></div><form id="contact-form" class="contact-form" action="/api/contact" method="post"><h3>ספרו לי על הפרויקט</h3><p>השאירו פרטים ואחזור אליכם.</p><div class="contact-form-grid"><label>שם מלא <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="100" required></label><label>כתובת אימייל <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" maxlength="254" dir="ltr" required></label><label>טלפון <span aria-hidden="true">*</span><input name="phone" type="tel" autocomplete="tel" maxlength="30" dir="ltr" required></label><label>עסק / ארגון <input name="company" autocomplete="organization" maxlength="120"></label></div><label class="contact-topic" hidden>במה אוכל לעזור? <select name="topic"><option value="" selected disabled>בחרו נושא</option><option value="וידאו ותוכן עם AI">וידאו ותוכן עם AI</option><option value="בוטים ואוטומציה">בוטים ואוטומציה</option><option value="ניהול קמפיינים">ניהול קמפיינים</option><option value="רעיון אחר">רעיון אחר</option></select></label><label>פרטי הפנייה <small>(לא חובה)</small><textarea name="message" rows="4" maxlength="4000" placeholder="אם תרצו, ספרו בקצרה מה תרצו לבנות או לשפר"></textarea></label><div class="contact-captcha"><label for="captcha-answer">בדיקה קצרה: מה הסכום של <strong id="captcha-question" dir="ltr">...</strong> <span aria-hidden="true">*</span></label><div><input id="captcha-answer" name="captchaAnswer" type="number" inputmode="numeric" min="0" max="20" required><button id="captcha-refresh" type="button" aria-label="שאלה חדשה">↻</button></div><input id="captcha-token" name="captchaToken" type="hidden"></div><div class="contact-honeypot" aria-hidden="true"><label>השאירו שדה זה ריק<input name="website" autocomplete="off" tabindex="-1"></label></div><button class="btn btn-purple contact-submit" type="submit"><span>שליחת פנייה לרמי</span>${icon.arrow}</button><p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p></form></div></section>`;
+
+const homeSchema = {'@context':'https://schema.org','@type':'WebSite',name:'רמי חירסונסקי',url:site+'/','inLanguage':'he-IL',description:'פתרונות AI ואוטומציה לעסקים'};
+await mkdir(out, {recursive:true});
+await writeFile(join(out,'index.html'),page({title:'רמי חירסונסקי | פתרונות AI ואוטומציה לעסקים',description:'רמי חירסונסקי בונה מערכות בינה מלאכותית לעסקים: בוט וואטסאפ, ניהול קמפיינים בטלגרם ויצירת וידאו ב-AI. הכירו פרויקטים וצרו קשר.',path:'/',content:homeContent,schema:[homeSchema],pageClass:'home-page'}));
+
+const servicePages = [
+  {
+    path:'/whatsapp-ai-bot/', title:'בוט וואטסאפ לעסקים עם AI | רמי חירסונסקי',
+    description:'איך בוט וואטסאפ חכם יכול לענות לפניות, להבין מה הלקוח צריך ולהניע את השיחה קדימה? דוגמה למערכת שבנה רמי חירסונסקי.',
+    eyebrow:'בוט וואטסאפ לעסקים', h1:'בוט וואטסאפ שמבין את השיחה, ומקדם אותה.',
+    lead:'הלקוחות כבר כותבים בוואטסאפ. השאלה היא מה קורה אחרי ההודעה הראשונה. מערכת שיחה חכמה יכולה לתת מענה ברור, להבין את הצורך ולהוביל לצעד הבא — בשפה טבעית ובקצב שמתאים ללקוח.',
+    introTitle:'מענה אישי יותר, גם כשהתהליך אוטומטי.',
+    intro:['בוט וואטסאפ לעסקים לא צריך להרגיש כמו רשימת כפתורים אינסופית. כשמתכננים אותו סביב השאלות האמיתיות של הלקוחות, הוא יכול להיות נקודת פתיחה טובה לשיחה: להסביר מה השירות כולל, לשאול את השאלות הנכונות ולהעביר את המידע הלאה בצורה מסודרת.','בדוגמה שבתיק העבודות אפשר לראות שיחה שמתקדמת משאלה פתוחה על סוג העסק לצורך מדויק יותר. המערכת לא מסתפקת בתשובה כללית; היא ממשיכה את הדיאלוג ומכוונת את הפונה בהתאם למה שסיפר.'],
+    features:[['מענה לשאלות נפוצות','הסברים בהירים על שירותים ותהליכים, בלי להמתין למענה ידני לכל שאלה ראשונית.'],['הבנת הצורך','שאלות המשך עוזרות לברר מה הפונה מחפש ולתת תשובה רלוונטית יותר.'],['המשך תהליך מסודר','השיחה יכולה להוביל לדוגמה, למידע נוסף או להעברה לאדם מתאים, לפי האפיון.']],
+    processTitle:'איך ניגשים לבניית בוט וואטסאפ?',
+    process:['ממפים את סוגי הפניות, המידע שהלקוחות צריכים והרגע שבו כדאי לערב אדם.','כותבים תסריטי שיחה טבעיים בעברית ומגדירים את גבולות המענה של המערכת.','בודקים שיחות לדוגמה, משפרים ניסוחים ומוודאים שהמעבר לצעד הבא ברור.'],
+    noteTitle:'לא רק תשובה מהירה', note:'הערך של בוט שיחה נמצא ברצף: תשובה שמבינה את ההקשר, שואלת כשצריך ולא משאירה את הלקוח בלי כיוון. פתרון נכון מתחיל תמיד באפיון של העסק ושל חוויית הלקוח.',
+    faq:[['האם הבוט מתאים לכל עסק?','ההתאמה תלויה בסוג הפניות ובתהליך השירות. בשיחת אפיון אפשר לזהות אילו חלקים כדאי להפוך לאוטומטיים והיכן עדיף להשאיר מענה אנושי.'],['האם אפשר לשלב נציג אנושי?','כן, אפשר לתכנן נקודות מעבר מסודרות לאדם כאשר השיחה דורשת טיפול אישי או החלטה מורכבת.'],['האם הבוט חייב לענות רק לפי תסריט קבוע?','לא בהכרח. אפשר לשלב לוגיקה וכלי AI כדי להבין ניסוחים שונים, תוך הגדרת מידע מאושר וגבולות פעולה ברורים.']],
+    images:[['wa_bot.svg','הדמיה כללית של שיחה עסקית בממשק בוט']],related:['/telegram-facebook-ads/','/ai-video-creation/']
+  },
+  {
+    path:'/telegram-facebook-ads/', title:'בוט טלגרם לניהול קמפיינים בפייסבוק | רמי חירסונסקי',
+    description:'בוט טלגרם שמסייע ליצור, לערוך ולנהל קמפיינים בפייסבוק, לבקש דוחות ולבחון ביצועים בשיחה אחת. הכירו את הפרויקט של רמי חירסונסקי.',
+    eyebrow:'אוטומציה לקמפיינים', h1:'ניהול קמפיינים בפייסבוק, דרך שיחה בטלגרם.',
+    lead:'נתוני קמפיין נמצאים בהרבה מסכים. שאלות טובות עולות דווקא באמצע יום העבודה. בוט טלגרם ייעודי מאפשר לבקש מידע, להבין מה השתנה ולנהל פעולות בקמפיינים דרך ממשק שיחתי נגיש.',
+    introTitle:'מהדוח הבא — להחלטה הבאה.',
+    intro:['הפרויקט שבתיק העבודות נבנה סביב ניהול קמפיינים בפייסבוק באמצעות טלגרם. במקום לחפש ידנית כל מדד, אפשר לשאול את הבוט על ביצועים ולקבל תמונה מסודרת של הקמפיין, כולל השוואות ושינויים לאורך זמן.','ההדמיות המצורפות ממחישות דוח קמפיין ומפרט אילו ניתוחים אפשר לבקש: לידים, עלות לקליק, עלות לליד, שינויים שבוצעו, פירוק לפי מודעות וקבוצות מודעות והמלצות להמשך בדיקה. היכולת ליצור, לערוך ולנהל קמפיינים מתוכננת כחלק מממשק השיחה.'],
+    features:[['מידע בשפה טבעית','מבקשים סיכום או פירוק של נתוני קמפיין במשפט פשוט.'],['הקשר לאורך זמן','אפשר לבדוק מה השתנה בין תקופות ומה קרה לפני או אחרי שינוי מסוים.'],['פעולות עבודה בטלגרם','יצירה, עריכה וניהול של קמפיינים מתוך ערוץ שיחה מוכר, בהתאם להרשאות ולהגדרות.']],
+    processTitle:'מה חשוב במערכת כזו?',
+    process:['מגדירים אילו נתונים ואילו פעולות באמת דרושים לצוות השיווק.','מארגנים את המידע כך שהבוט יחזיר תשובות קריאות עם הקשר, ולא רק טבלת מספרים.','קובעים הרשאות ואישורים לפעולות שמשנות קמפיינים, ובודקים את התוצאה מול הנתונים בפועל.'],
+    noteTitle:'יותר נתונים זה לא תמיד יותר בהירות', note:'המטרה אינה להציף בעוד דוחות, אלא להנגיש את המידע הנכון בזמן הנכון. בוט טוב מאפשר לשאול שאלה ממוקדת, לראות את המספרים הרלוונטיים ולהחליט מה לבדוק הלאה.',
+    faq:[['האם הבוט יכול להחליף את מנהל הקמפיינים?','הוא יכול לסייע בניתוח, בדיווח ובפעולות שגרתיות. החלטות אסטרטגיות ובקרה על תקציב נשארות בידי האנשים המנהלים את הפעילות.'],['אילו מדדים אפשר לבדוק?','בדוגמת הפרויקט נראים לידים, CPC, CPL, שינויים בקמפיין ופירוקים לפי רמות שונות. המדדים המדויקים תלויים בחיבור ובהגדרת הקמפיין.'],['האם אפשר להגביל פעולות שדורשות אישור?','כן. אפשר לאפיין הרשאות ושלבי אישור לפני ביצוע פעולות שמשנות קמפיינים או תקציבים.']],
+    images:[['tg_bot_fb_ads2.svg','הדמיה כללית של אפשרויות לניתוח קמפיין'],['tg_bot_fb_ads.svg','הדמיה כללית של דוח קמפיין']],related:['/whatsapp-ai-bot/','/ai-video-creation/']
+  },
+  {
+    path:'/ai-video-creation/', title:'מערכת יצירת וידאו ב-AI מפרומפט | רמי חירסונסקי',
+    description:'מערכת AI ליצירת סרטונים מרעיון או פרומפט, עבודה עם וריאציות וסקירת התוצרים במקום אחד. הכירו את Content Studio של רמי חירסונסקי.',
+    eyebrow:'יצירת תוכן ב-AI', h1:'מרעיון אחד להרבה אפשרויות וידאו.',
+    lead:'יצירת וידאו לא חייבת להתחיל מלוח ריק בכל פעם. מערכת תוכן מבוססת AI יכולה לקבל תיאור של הצורך, להכין תוצרים שונים ולרכז את העבודה עליהם במרחב אחד ברור.',
+    introTitle:'פרומפט הוא נקודת פתיחה. תהליך הוא ההבדל.',
+    intro:['Content Studio שבתיק העבודות מציג סביבת עבודה ליצירת תוכן וידאו בעזרת AI. המשתמש יכול לתאר מה הוא רוצה ליצור, לבחור כיוון ולעבור מהרעיון לתוצר. המערכת נועדה לתמוך ביצירה של וריאציות רבות מתוך פרומפטים ולרכז אותן בספרייה אחת.','ההדמיה השנייה ממחישה גם את השלב שאחרי היצירה: צפייה בתוצר, סקירה ומתן משוב. זהו חלק חשוב בכל זרימת תוכן — לראות מה נוצר, להחליט מה טוב, ומה כדאי לשנות בסבב הבא.'],
+    features:[['מתחילים מתיאור פשוט','כותבים פרומפט שמתאר את המסר, הקהל והסגנון הרצוי.'],['מייצרים וריאציות','אפשר לחקור כמה כיוונים יצירתיים מתוך אותה נקודת פתיחה.'],['סוקרים במקום אחד','ספרייה ותהליך סקירה עוזרים למצוא תוצרים ולתת משוב ברור.']],
+    processTitle:'איך הופכים רעיון לסרטון שימושי?',
+    process:['מגדירים את מטרת הסרטון: למי הוא מיועד ומה הפעולה או ההבנה שרוצים לעורר.','מתארים את התוכן הרצוי בפרומפט ויוצרים גרסאות לבדיקה.','צופים בתוצרים, נותנים משוב ומשפרים עד שהמסר ברור ומתאים לערוץ הפרסום.'],
+    noteTitle:'ליצור מהר, לבחור נכון', note:'AI יכול להרחיב מאוד את מגוון האפשרויות. העבודה החשובה היא לבחור את התוצר שמתאים למותג, לקהל ולמסר — ולכן סביבת סקירה מסודרת חשובה לא פחות ממנוע היצירה.',
+    faq:[['האם צריך ידע בעריכת וידאו כדי להתחיל?','אפשר להתחיל מתיאור פשוט של הרעיון. איכות התוצאה משתפרת כשמגדירים מסר, קהל וסגנון בצורה ברורה ומבצעים סקירה של התוצרים.'],['האם אפשר ליצור כמה גרסאות לאותו רעיון?','כן. זהו אחד היתרונות של תהליך מבוסס פרומפט: לבדוק וריאציות ולבחור את הכיוון המתאים ביותר.'],['האם עדיין צריך לעבור על הסרטונים?','כן. סקירה אנושית של דיוק, שפה, מיתוג והתאמה לקהל היא שלב חיוני לפני שימוש בתוכן.']],
+    images:[['video_creation1.svg','הדמיית מסך יצירת וידאו ב-AI'],['video_creation2.svg','הדמיית ספריית וידאו ותהליך סקירה']],related:['/whatsapp-ai-bot/','/telegram-facebook-ads/']
+  }
+];
+
+const relatedName = Object.fromEntries(projects.map(p => [p.path,p.title]));
+function serviceContent(s) {
+  const pageName = s.eyebrow;
+  return `<section class="service-hero"><div class="container"><nav class="breadcrumbs" aria-label="מיקום באתר"><a href="/">עמוד הבית</a><span aria-hidden="true">/</span><span aria-current="page">${pageName}</span></nav><div class="service-hero-grid"><div><span class="overline">${s.eyebrow} / תיק עבודות</span><h1>${s.h1}</h1><p>${s.lead}</p><div class="service-hero-actions">${purpleButton('לראות את המערכת', '#gallery')}${waButton('לדבר על פתרון דומה')}</div></div><div class="service-hero-art"><div class="service-art-label">PROJECT / ${projects.find(p=>p.path===s.path).no}</div><div class="service-art-image">${image(s.images[0][0],s.images[0][1])}</div><div class="service-art-caption">${icon.spark}<span>מערכת אמיתית. פתרון מדויק.</span></div></div></div></div></section>
+  <section class="service-article section-pad"><div class="container article-grid"><aside class="article-aside"><span>בתוך העמוד</span><a href="#overview">על המערכת</a><a href="#benefits">מה היא מאפשרת</a><a href="#gallery">הצצה לפרויקט</a><a href="#faq">שאלות נפוצות</a></aside><div class="article-body"><section id="overview"><span class="overline">מבט מקרוב</span><h2>${s.introTitle}</h2>${s.intro.map(p=>`<p>${p}</p>`).join('')}</section><section id="benefits" class="article-section"><span class="overline">הערך לעסק</span><h2>מה המערכת מאפשרת?</h2><div class="benefit-grid">${s.features.map((f,i)=>`<div class="benefit"><span>0${i+1}</span><h3>${f[0]}</h3><p>${f[1]}</p></div>`).join('')}</div></section><section class="article-section"><span class="overline">מהרעיון לביצוע</span><h2>${s.processTitle}</h2><ol class="process-list">${s.process.map(p=>`<li>${p}</li>`).join('')}</ol></section></div></div></section>
+  <section class="gallery-section section-pad" id="gallery"><div class="container"><div class="section-header"><div><span class="overline">הצצה לפרויקט</span><h2>כך זה נראה<br><em>בפעולה.</em></h2></div><p>הדמיות ממשק ללא פרטי לקוחות. לחצו על תמונה כדי לצפות בה בגודל מלא.</p></div><div class="service-gallery ${s.images.length===1?'gallery-single':''}">${s.images.map(([src,alt])=>`<figure><button class="image-open" type="button" data-full="/assets/${src}" data-caption="${esc(alt)}" aria-label="הגדלת תמונה: ${esc(alt)}">${image(src,alt)}</button><figcaption>${alt}</figcaption></figure>`).join('')}</div></div></section>
+  <section class="article-end section-pad"><div class="container article-end-grid"><div class="article-note"><span class="overline">כדאי לזכור</span><h2>${s.noteTitle}</h2><p>${s.note}</p></div><div class="faq" id="faq"><span class="overline">שאלות נפוצות</span><h2>עוד כמה תשובות.</h2>${s.faq.map(([q,a])=>`<details><summary>${q}<span aria-hidden="true">+</span></summary><p>${a}</p></details>`).join('')}</div></div></section>
+  <section class="service-cta section-pad"><div class="container service-cta-inner"><div><span class="overline">הפרויקט הבא</span><h2>מתאים גם לעסק שלכם?</h2><p>ספרו לי מה אתם רוצים לבנות, ונבדוק יחד מה הדרך הנכונה להתחיל.</p></div>${waButton('בואו נדבר בוואטסאפ')}</div></section><section class="related section-pad"><div class="container"><span class="overline">עוד פרויקטים</span><h2>אולי יעניין אתכם גם</h2><div class="related-grid">${s.related.map(path=>`<a href="${path}"><span>${relatedName[path]}</span>${icon.arrow}</a>`).join('')}</div></div></section>`;
+}
+
+for (const s of servicePages) {
+  const dir = join(out,s.path.slice(1));
+  await mkdir(dir,{recursive:true});
+  const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:s.faq.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))};
+  const serviceSchema = {'@context':'https://schema.org','@type':'Service',name:s.eyebrow,description:s.description,provider:{'@type':'Person',name:'רמי חירסונסקי',url:site+'/'},areaServed:{'@type':'Country',name:'Israel'},url:site+s.path};
+  const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'עמוד הבית',item:site+'/'},{'@type':'ListItem',position:2,name:s.eyebrow,item:site+s.path}]};
+  await writeFile(join(dir,'index.html'),page({title:s.title,description:s.description,path:s.path,content:serviceContent(s),schema:[serviceSchema,faqSchema,breadcrumbSchema],pageClass:'service-page'}));
+}
+
+const urls = ['/',...servicePages.map(s=>s.path)];
+await writeFile(join(out,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(path=>`  <url><loc>${site+path}</loc><lastmod>2026-10-11</lastmod></url>`).join('\n')}\n</urlset>\n`);
+await writeFile(join(out,'robots.txt'),`User-agent: *\nAllow: /\nSitemap: ${site}/sitemap.xml\n`);
+console.log(`Generated ${urls.length} pages, sitemap and robots.txt`);

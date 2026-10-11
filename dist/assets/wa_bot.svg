@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="Illustrative business chat automation interface">
+  <rect width="1280" height="640" fill="#0c1010"/>
+  <rect width="230" height="640" fill="#111717"/>
+  <text x="26" y="52" fill="#f1f7f4" font-family="Arial,sans-serif" font-size="21" font-weight="700">Conversation flow</text>
+  <rect x="16" y="100" width="198" height="54" rx="12" fill="#1e4033"/>
+  <g fill="#526159"><rect x="28" y="191" width="150" height="11" rx="5"/><rect x="28" y="230" width="125" height="11" rx="5"/><rect x="28" y="269" width="142" height="11" rx="5"/><rect x="28" y="308" width="111" height="11" rx="5"/></g>
+  <rect x="260" y="25" width="990" height="590" rx="19" fill="#171c1c"/>
+  <rect x="286" y="48" width="930" height="45" rx="12" fill="#202929"/>
+  <text x="310" y="77" fill="#e4f1e9" font-family="Arial,sans-serif" font-size="18">Business assistant demo</text>
+  <rect x="507" y="134" width="598" height="83" rx="17" fill="#23513b"/>
+  <g fill="#89bc9d"><rect x="535" y="159" width="485" height="11" rx="5"/><rect x="535" y="181" width="356" height="11" rx="5"/></g>
+  <rect x="301" y="250" width="499" height="83" rx="17" fill="#27302e"/>
+  <g fill="#82968b"><rect x="326" y="275" width="421" height="11" rx="5"/><rect x="326" y="297" width="285" height="11" rx="5"/></g>
+  <rect x="591" y="369" width="514" height="82" rx="17" fill="#23513b"/>
+  <g fill="#89bc9d"><rect x="619" y="394" width="406" height="11" rx="5"/><rect x="619" y="416" width="302" height="11" rx="5"/></g>
+  <rect x="301" y="486" width="375" height="76" rx="17" fill="#27302e"/>
+  <g fill="#82968b"><rect x="326" y="511" width="300" height="11" rx="5"/><rect x="326" y="533" width="225" height="11" rx="5"/></g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" role="img" aria-label="Illustrative AI video creation interface">
+  <rect width="1280" height="640" fill="#0e0d17"/>
+  <rect width="205" height="640" fill="#171527"/>
+  <rect x="22" y="24" width="36" height="36" rx="10" fill="#9b78f4"/>
+  <text x="70" y="49" fill="#f8f7ff" font-family="Arial,sans-serif" font-size="20" font-weight="700">Content Studio</text>
+  <rect x="18" y="95" width="169" height="38" rx="12" fill="#8e6fe8"/>
+  <text x="46" y="120" fill="white" font-family="Arial,sans-serif" font-size="15">New project</text>
+  <g fill="#484259"><rect x="26" y="178" width="132" height="11" rx="5"/><rect x="26" y="214" width="105" height="11" rx="5"/><rect x="26" y="250" width="125" height="11" rx="5"/><rect x="26" y="286" width="92" height="11" rx="5"/></g>
+  <circle cx="742" cy="191" r="31" fill="#9571ef"/><path d="m739 173 5 14 14 5-14 5-5 14-5-14-14-5 14-5z" fill="white"/>
+  <text x="517" y="263" fill="#f9f8ff" font-family="Arial,sans-serif" font-size="37" font-weight="700">Create a new video</text>
+  <text x="513" y="300" fill="#b7b3c5" font-family="Arial,sans-serif" font-size="17">Start with an idea, then explore visual directions.</text>
+  <g fill="#232130" stroke="#4d4767"><rect x="391" y="340" width="210" height="126" rx="18"/><rect x="627" y="340" width="210" height="126" rx="18"/><rect x="863" y="340" width="210" height="126" rx="18"/></g>
+  <g fill="#a488f0"><circle cx="496" cy="380" r="15"/><circle cx="732" cy="380" r="15"/><circle cx="968" cy="380" r="15"/></g>
+  <g fill="#77718c"><rect x="433" y="414" width="126" height="9" rx="4"/><rect x="669" y="414" width="126" height="9" rx="4"/><rect x="905" y="414" width="126" height="9" rx="4"/></g>
+  <rect x="391" y="506" width="682" height="58" rx="29" fill="#1b1a27" stroke="#544d72"/>
+  <text x="425" y="542" fill="#a9a3b8" font-family="Arial,sans-serif" font-size="17">Describe the video you want to create...</text>
+</svg>
