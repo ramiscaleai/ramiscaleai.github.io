@@ -82,10 +82,11 @@
 
 .ecosystem-grid img.ecosystem-rentflow-logo{max-width:330px;border-radius:8px;background:#0d1522;object-fit:contain}
 
-/* Keep the other brands and the topic selector available in source, but hidden on the site. */
+/* Respect hidden links and the optional topic selector. */
 .about-copy a[hidden],.ecosystem-grid a[hidden],.contact-form .contact-topic[hidden]{display:none!important}
-.ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr));justify-items:stretch}
+.ecosystem-grid{grid-template-columns:repeat(3,minmax(0,1fr));justify-items:stretch}
 .ecosystem-grid a:not([hidden]){width:100%;min-height:260px}
+@media(max-width:850px){.ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.ecosystem-grid{grid-template-columns:1fr}}
 .contact-form label small{color:#746985;font-size:.78rem;font-weight:500}
 
