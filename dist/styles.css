@@ -84,8 +84,9 @@
 
 /* Keep the other brands and the topic selector available in source, but hidden on the site. */
 .about-copy a[hidden],.ecosystem-grid a[hidden],.contact-form .contact-topic[hidden]{display:none!important}
-.ecosystem-grid{grid-template-columns:1fr;justify-items:center}
-.ecosystem-grid a:not([hidden]){width:min(100%,520px);min-height:260px}
+.ecosystem-grid{grid-template-columns:repeat(2,minmax(0,1fr));justify-items:stretch}
+.ecosystem-grid a:not([hidden]){width:100%;min-height:260px}
+@media(max-width:620px){.ecosystem-grid{grid-template-columns:1fr}}
 .contact-form label small{color:#746985;font-size:.78rem;font-weight:500}
 
 /* Make the required arithmetic check easy to notice and complete. */

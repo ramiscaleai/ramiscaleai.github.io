@@ -8,8 +8,9 @@ const allowedAtRoot = new Set(['.git', '.gitignore', '.github', '.githooks', 'RE
 const forbiddenNames = /^(?:\.env(?:\..*)?|contact-server\.mjs|docker-compose\.ya?ml|Dockerfile(?:\..*)?|nginx\.conf|id_(?:rsa|ed25519)(?:\.pub)?)$/i;
 const privateKeyExtension = /\.(?:pem|key|p12|pfx)$/i;
 const emailAddress = /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/i;
-const absoluteApi = /https?:\/\/[^\s"'<>`]*\/(?:api|rest)(?:\/|[?#]|$)/i;
-const apiHostname = /https?:\/\/api\.[A-Z0-9.-]+/i;
+const approvedApiOrigin = 'https://api.rami-heb.joyfulaiteam.net';
+const absoluteApi = /https?:\/\/[^\s"'<>`]*\/(?:api|rest)(?:\/|[?#]|$)/gi;
+const apiHostname = /https?:\/\/api\.[A-Z0-9.-]+(?::[0-9]+)?/gi;
 const credential = new RegExp([
   '-----BEGIN (?:OPENSSH |RSA |EC |DSA )?PRIVATE KEY-----',
   'github_pat_[A-Za-z0-9_]{20,}',
@@ -28,7 +29,12 @@ function check(name, bytes, location) {
   const binaryAsset = /\.(?:png|jpe?g|webp|gif|ico)$/i.test(name);
   const data = bytes.toString(binaryAsset ? 'latin1' : 'utf8');
   if (emailAddress.test(data)) failures.add(`${location}:${name}: email address`);
-  if (absoluteApi.test(data) || apiHostname.test(data)) failures.add(`${location}:${name}: absolute API location`);
+  const apiPaths = data.match(absoluteApi) || [];
+  const apiHosts = data.match(apiHostname) || [];
+  if (apiPaths.some(address => !address.startsWith(`${approvedApiOrigin}/api/`)) ||
+      apiHosts.some(address => address !== approvedApiOrigin)) {
+    failures.add(`${location}:${name}: unapproved absolute API location`);
+  }
   if (credential.test(data)) failures.add(`${location}:${name}: credential-like string`);
   if (data.includes('street' + 'Address')) failures.add(`${location}:${name}: street address in metadata`);
 }

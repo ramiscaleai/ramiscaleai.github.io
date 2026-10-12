@@ -42,6 +42,7 @@ if (lightbox) {
 }
 
 const contactForm = document.querySelector('#contact-form');
+const apiOrigin = 'https://api.rami-heb.joyfulaiteam.net';
 const showStaticContactNotice = () => {
   const preview = document.createElement('div');
   preview.className = 'contact-form';
@@ -70,7 +71,7 @@ if (contactForm && location.hostname.endsWith('.github.io')) {
     token.value = '';
     answer.value = '';
     try {
-      const response = await fetch('/api/captcha', {cache: 'no-store'});
+      const response = await fetch(`${apiOrigin}/api/captcha`, {cache: 'no-store', credentials: 'omit'});
       if (response.status === 404) {
         showStaticContactNotice();
         return;
@@ -97,9 +98,10 @@ if (contactForm && location.hostname.endsWith('.github.io')) {
     setStatus('הפנייה נשלחת...');
     try {
       const fields = Object.fromEntries(new FormData(contactForm));
-      const response = await fetch('/api/contact', {
+      const response = await fetch(`${apiOrigin}/api/contact`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
+        credentials: 'omit',
         body: JSON.stringify(fields)
       });
       const result = await response.json();
