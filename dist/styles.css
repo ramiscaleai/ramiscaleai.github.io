@@ -24,7 +24,7 @@
 .project-media-telegram .image-open-2{width:51%;height:auto;aspect-ratio:491/199;right:7%;top:68%;transform:rotate(4deg)}
 .project-media-telegram .image-open img{width:100%;height:auto;object-fit:initial}
 .project-media-telegram .image-open-2 img{display:block}
-
+.service-gallery button[data-full$="/tg_bot_fb_ads.png"] img,.lightbox img.trim-report{width:min(100%,491px);height:auto;aspect-ratio:491/199;object-fit:cover;object-position:top;max-height:none}
 .lightbox img.trim-report{width:min(90vw,800px);margin:auto}
 @media(max-width:620px){.project-media-telegram{min-height:360px}.project-media-telegram .image-open-1{width:78%;left:5%;top:17%}.project-media-telegram .image-open-2{width:62%;right:5%;top:70%}}
 

@@ -54,19 +54,19 @@ const projects = [
     no:'01', kind:'תוכן בקנה מידה', title:'מערכת יצירת וידאו עם AI',
     description:'סטודיו תוכן שמתחיל בפרומפט ומאפשר ליצור וריאציות וידאו רבות, לצפות בתוצרים ולעבור עליהם במקום אחד.',
     path:'/ai-video-creation/', tag:'AI Content Studio', icon:icon.play,
-    images:[['video_creation1.svg','הדמיה כללית של יצירת תוכן במערכת וידאו מבוססת AI'],['video_creation2.svg','הדמיה כללית של ספריית סרטונים ותהליך סקירה']], mediaClass:'project-media-video'
+    images:[['video_creation1.png','מסך יצירת תוכן במערכת וידאו מבוססת AI'],['video_creation2.png','ספריית סרטונים ותהליך סקירה במערכת Content Studio']], mediaClass:'project-media-video'
   },
   {
     no:'02', kind:'שיחה חכמה', title:'בוט וואטסאפ שממשיך את השיחה',
     description:'מערכת שיחה לעסק: מענה לשאלות, הבנת הצורך של הפונה והכוונה לצעד הבא — בתוך הערוץ שבו הלקוחות כבר נמצאים.',
     path:'/whatsapp-ai-bot/', tag:'WhatsApp AI', icon:icon.chat,
-    images:[['wa_bot.svg','הדמיה כללית של מערכת בוט וואטסאפ ושיחה עסקית']], mediaClass:'project-media-wa'
+    images:[['wa_bot.png','צילום מסך של מערכת בוט וואטסאפ ושיחה עם לקוח']], mediaClass:'project-media-wa'
   },
   {
     no:'03', kind:'ניהול קמפיינים', title:'בוט טלגרם לקמפיינים בפייסבוק',
     description:'ממשק שיחתי שמסייע ליצור, לערוך ולנהל קמפיינים, לבקש דוחות ולבחון ביצועים בלי ללכת לאיבוד בין מסכים.',
     path:'/telegram-facebook-ads/', tag:'Telegram × Meta Ads', icon:icon.chart,
-    images:[['tg_bot_fb_ads2.svg','הדמיה כללית של יכולות ניתוח קמפיינים'],['tg_bot_fb_ads.svg','הדמיה כללית של דוח קמפיין בבוט טלגרם']], mediaClass:'project-media-telegram'
+    images:[['tg_bot_fb_ads2.png','בוט טלגרם המציג יכולות ניתוח קמפיינים'],['tg_bot_fb_ads.png','דוח קמפיין שנשלח בבוט טלגרם']], mediaClass:'project-media-telegram'
   }
 ];
 
@@ -105,7 +105,7 @@ const servicePages = [
     process:['ממפים את סוגי הפניות, המידע שהלקוחות צריכים והרגע שבו כדאי לערב אדם.','כותבים תסריטי שיחה טבעיים בעברית ומגדירים את גבולות המענה של המערכת.','בודקים שיחות לדוגמה, משפרים ניסוחים ומוודאים שהמעבר לצעד הבא ברור.'],
     noteTitle:'לא רק תשובה מהירה', note:'הערך של בוט שיחה נמצא ברצף: תשובה שמבינה את ההקשר, שואלת כשצריך ולא משאירה את הלקוח בלי כיוון. פתרון נכון מתחיל תמיד באפיון של העסק ושל חוויית הלקוח.',
     faq:[['האם הבוט מתאים לכל עסק?','ההתאמה תלויה בסוג הפניות ובתהליך השירות. בשיחת אפיון אפשר לזהות אילו חלקים כדאי להפוך לאוטומטיים והיכן עדיף להשאיר מענה אנושי.'],['האם אפשר לשלב נציג אנושי?','כן, אפשר לתכנן נקודות מעבר מסודרות לאדם כאשר השיחה דורשת טיפול אישי או החלטה מורכבת.'],['האם הבוט חייב לענות רק לפי תסריט קבוע?','לא בהכרח. אפשר לשלב לוגיקה וכלי AI כדי להבין ניסוחים שונים, תוך הגדרת מידע מאושר וגבולות פעולה ברורים.']],
-    images:[['wa_bot.svg','הדמיה כללית של שיחה עסקית בממשק בוט']],related:['/telegram-facebook-ads/','/ai-video-creation/']
+    images:[['wa_bot.png','מערכת בוט וואטסאפ: דוגמה לשיחה עסקית בממשק וואטסאפ']],related:['/telegram-facebook-ads/','/ai-video-creation/']
   },
   {
     path:'/telegram-facebook-ads/', title:'בוט טלגרם לניהול קמפיינים בפייסבוק | רמי חירסונסקי',
@@ -113,13 +113,13 @@ const servicePages = [
     eyebrow:'אוטומציה לקמפיינים', h1:'ניהול קמפיינים בפייסבוק, דרך שיחה בטלגרם.',
     lead:'נתוני קמפיין נמצאים בהרבה מסכים. שאלות טובות עולות דווקא באמצע יום העבודה. בוט טלגרם ייעודי מאפשר לבקש מידע, להבין מה השתנה ולנהל פעולות בקמפיינים דרך ממשק שיחתי נגיש.',
     introTitle:'מהדוח הבא — להחלטה הבאה.',
-    intro:['הפרויקט שבתיק העבודות נבנה סביב ניהול קמפיינים בפייסבוק באמצעות טלגרם. במקום לחפש ידנית כל מדד, אפשר לשאול את הבוט על ביצועים ולקבל תמונה מסודרת של הקמפיין, כולל השוואות ושינויים לאורך זמן.','ההדמיות המצורפות ממחישות דוח קמפיין ומפרט אילו ניתוחים אפשר לבקש: לידים, עלות לקליק, עלות לליד, שינויים שבוצעו, פירוק לפי מודעות וקבוצות מודעות והמלצות להמשך בדיקה. היכולת ליצור, לערוך ולנהל קמפיינים מתוכננת כחלק מממשק השיחה.'],
+    intro:['הפרויקט שבתיק העבודות נבנה סביב ניהול קמפיינים בפייסבוק באמצעות טלגרם. במקום לחפש ידנית כל מדד, אפשר לשאול את הבוט על ביצועים ולקבל תמונה מסודרת של הקמפיין, כולל השוואות ושינויים לאורך זמן.','בדוגמאות המצורפות הבוט מציג דוח קמפיין ומפרט אילו ניתוחים אפשר לבקש: לידים, עלות לקליק, עלות לליד, שינויים שבוצעו, פירוק לפי מודעות וקבוצות מודעות והמלצות להמשך בדיקה. היכולת ליצור, לערוך ולנהל קמפיינים מתוכננת כחלק מממשק השיחה.'],
     features:[['מידע בשפה טבעית','מבקשים סיכום או פירוק של נתוני קמפיין במשפט פשוט.'],['הקשר לאורך זמן','אפשר לבדוק מה השתנה בין תקופות ומה קרה לפני או אחרי שינוי מסוים.'],['פעולות עבודה בטלגרם','יצירה, עריכה וניהול של קמפיינים מתוך ערוץ שיחה מוכר, בהתאם להרשאות ולהגדרות.']],
     processTitle:'מה חשוב במערכת כזו?',
     process:['מגדירים אילו נתונים ואילו פעולות באמת דרושים לצוות השיווק.','מארגנים את המידע כך שהבוט יחזיר תשובות קריאות עם הקשר, ולא רק טבלת מספרים.','קובעים הרשאות ואישורים לפעולות שמשנות קמפיינים, ובודקים את התוצאה מול הנתונים בפועל.'],
     noteTitle:'יותר נתונים זה לא תמיד יותר בהירות', note:'המטרה אינה להציף בעוד דוחות, אלא להנגיש את המידע הנכון בזמן הנכון. בוט טוב מאפשר לשאול שאלה ממוקדת, לראות את המספרים הרלוונטיים ולהחליט מה לבדוק הלאה.',
     faq:[['האם הבוט יכול להחליף את מנהל הקמפיינים?','הוא יכול לסייע בניתוח, בדיווח ובפעולות שגרתיות. החלטות אסטרטגיות ובקרה על תקציב נשארות בידי האנשים המנהלים את הפעילות.'],['אילו מדדים אפשר לבדוק?','בדוגמת הפרויקט נראים לידים, CPC, CPL, שינויים בקמפיין ופירוקים לפי רמות שונות. המדדים המדויקים תלויים בחיבור ובהגדרת הקמפיין.'],['האם אפשר להגביל פעולות שדורשות אישור?','כן. אפשר לאפיין הרשאות ושלבי אישור לפני ביצוע פעולות שמשנות קמפיינים או תקציבים.']],
-    images:[['tg_bot_fb_ads2.svg','הדמיה כללית של אפשרויות לניתוח קמפיין'],['tg_bot_fb_ads.svg','הדמיה כללית של דוח קמפיין']],related:['/whatsapp-ai-bot/','/ai-video-creation/']
+    images:[['tg_bot_fb_ads2.png','בוט טלגרם המציג אפשרויות לניתוח קמפיין בפייסבוק'],['tg_bot_fb_ads.png','דוח קמפיין בפייסבוק שנשלח דרך בוט טלגרם']],related:['/whatsapp-ai-bot/','/ai-video-creation/']
   },
   {
     path:'/ai-video-creation/', title:'מערכת יצירת וידאו ב-AI מפרומפט | רמי חירסונסקי',
@@ -127,13 +127,13 @@ const servicePages = [
     eyebrow:'יצירת תוכן ב-AI', h1:'מרעיון אחד להרבה אפשרויות וידאו.',
     lead:'יצירת וידאו לא חייבת להתחיל מלוח ריק בכל פעם. מערכת תוכן מבוססת AI יכולה לקבל תיאור של הצורך, להכין תוצרים שונים ולרכז את העבודה עליהם במרחב אחד ברור.',
     introTitle:'פרומפט הוא נקודת פתיחה. תהליך הוא ההבדל.',
-    intro:['Content Studio שבתיק העבודות מציג סביבת עבודה ליצירת תוכן וידאו בעזרת AI. המשתמש יכול לתאר מה הוא רוצה ליצור, לבחור כיוון ולעבור מהרעיון לתוצר. המערכת נועדה לתמוך ביצירה של וריאציות רבות מתוך פרומפטים ולרכז אותן בספרייה אחת.','ההדמיה השנייה ממחישה גם את השלב שאחרי היצירה: צפייה בתוצר, סקירה ומתן משוב. זהו חלק חשוב בכל זרימת תוכן — לראות מה נוצר, להחליט מה טוב, ומה כדאי לשנות בסבב הבא.'],
+    intro:['Content Studio שבתיק העבודות מציג סביבת עבודה ליצירת תוכן וידאו בעזרת AI. המשתמש יכול לתאר מה הוא רוצה ליצור, לבחור כיוון ולעבור מהרעיון לתוצר. המערכת נועדה לתמוך ביצירה של וריאציות רבות מתוך פרומפטים ולרכז אותן בספרייה אחת.','צילום המסך השני מראה גם את השלב שאחרי היצירה: צפייה בתוצר, סקירה ומתן משוב. זהו חלק חשוב בכל זרימת תוכן — לראות מה נוצר, להחליט מה טוב, ומה כדאי לשנות בסבב הבא.'],
     features:[['מתחילים מתיאור פשוט','כותבים פרומפט שמתאר את המסר, הקהל והסגנון הרצוי.'],['מייצרים וריאציות','אפשר לחקור כמה כיוונים יצירתיים מתוך אותה נקודת פתיחה.'],['סוקרים במקום אחד','ספרייה ותהליך סקירה עוזרים למצוא תוצרים ולתת משוב ברור.']],
     processTitle:'איך הופכים רעיון לסרטון שימושי?',
     process:['מגדירים את מטרת הסרטון: למי הוא מיועד ומה הפעולה או ההבנה שרוצים לעורר.','מתארים את התוכן הרצוי בפרומפט ויוצרים גרסאות לבדיקה.','צופים בתוצרים, נותנים משוב ומשפרים עד שהמסר ברור ומתאים לערוץ הפרסום.'],
     noteTitle:'ליצור מהר, לבחור נכון', note:'AI יכול להרחיב מאוד את מגוון האפשרויות. העבודה החשובה היא לבחור את התוצר שמתאים למותג, לקהל ולמסר — ולכן סביבת סקירה מסודרת חשובה לא פחות ממנוע היצירה.',
     faq:[['האם צריך ידע בעריכת וידאו כדי להתחיל?','אפשר להתחיל מתיאור פשוט של הרעיון. איכות התוצאה משתפרת כשמגדירים מסר, קהל וסגנון בצורה ברורה ומבצעים סקירה של התוצרים.'],['האם אפשר ליצור כמה גרסאות לאותו רעיון?','כן. זהו אחד היתרונות של תהליך מבוסס פרומפט: לבדוק וריאציות ולבחור את הכיוון המתאים ביותר.'],['האם עדיין צריך לעבור על הסרטונים?','כן. סקירה אנושית של דיוק, שפה, מיתוג והתאמה לקהל היא שלב חיוני לפני שימוש בתוכן.']],
-    images:[['video_creation1.svg','הדמיית מסך יצירת וידאו ב-AI'],['video_creation2.svg','הדמיית ספריית וידאו ותהליך סקירה']],related:['/whatsapp-ai-bot/','/telegram-facebook-ads/']
+    images:[['video_creation1.png','מסך הפתיחה של Content Studio ליצירת וידאו ב-AI'],['video_creation2.png','מסך הספרייה והסקירה של תוצר וידאו ב-Content Studio']],related:['/whatsapp-ai-bot/','/telegram-facebook-ads/']
   }
 ];
 
@@ -142,7 +142,7 @@ function serviceContent(s) {
   const pageName = s.eyebrow;
   return `<section class="service-hero"><div class="container"><nav class="breadcrumbs" aria-label="מיקום באתר"><a href="/">עמוד הבית</a><span aria-hidden="true">/</span><span aria-current="page">${pageName}</span></nav><div class="service-hero-grid"><div><span class="overline">${s.eyebrow} / תיק עבודות</span><h1>${s.h1}</h1><p>${s.lead}</p><div class="service-hero-actions">${purpleButton('לראות את המערכת', '#gallery')}${waButton('לדבר על פתרון דומה')}</div></div><div class="service-hero-art"><div class="service-art-label">PROJECT / ${projects.find(p=>p.path===s.path).no}</div><div class="service-art-image">${image(s.images[0][0],s.images[0][1])}</div><div class="service-art-caption">${icon.spark}<span>מערכת אמיתית. פתרון מדויק.</span></div></div></div></div></section>
   <section class="service-article section-pad"><div class="container article-grid"><aside class="article-aside"><span>בתוך העמוד</span><a href="#overview">על המערכת</a><a href="#benefits">מה היא מאפשרת</a><a href="#gallery">הצצה לפרויקט</a><a href="#faq">שאלות נפוצות</a></aside><div class="article-body"><section id="overview"><span class="overline">מבט מקרוב</span><h2>${s.introTitle}</h2>${s.intro.map(p=>`<p>${p}</p>`).join('')}</section><section id="benefits" class="article-section"><span class="overline">הערך לעסק</span><h2>מה המערכת מאפשרת?</h2><div class="benefit-grid">${s.features.map((f,i)=>`<div class="benefit"><span>0${i+1}</span><h3>${f[0]}</h3><p>${f[1]}</p></div>`).join('')}</div></section><section class="article-section"><span class="overline">מהרעיון לביצוע</span><h2>${s.processTitle}</h2><ol class="process-list">${s.process.map(p=>`<li>${p}</li>`).join('')}</ol></section></div></div></section>
-  <section class="gallery-section section-pad" id="gallery"><div class="container"><div class="section-header"><div><span class="overline">הצצה לפרויקט</span><h2>כך זה נראה<br><em>בפעולה.</em></h2></div><p>הדמיות ממשק ללא פרטי לקוחות. לחצו על תמונה כדי לצפות בה בגודל מלא.</p></div><div class="service-gallery ${s.images.length===1?'gallery-single':''}">${s.images.map(([src,alt])=>`<figure><button class="image-open" type="button" data-full="/assets/${src}" data-caption="${esc(alt)}" aria-label="הגדלת תמונה: ${esc(alt)}">${image(src,alt)}</button><figcaption>${alt}</figcaption></figure>`).join('')}</div></div></section>
+  <section class="gallery-section section-pad" id="gallery"><div class="container"><div class="section-header"><div><span class="overline">הצצה לפרויקט</span><h2>כך זה נראה<br><em>בפעולה.</em></h2></div><p>צילומי מסך מתוך המערכת. לחצו על תמונה כדי לצפות בה בגודל מלא.</p></div><div class="service-gallery ${s.images.length===1?'gallery-single':''}">${s.images.map(([src,alt])=>`<figure><button class="image-open" type="button" data-full="/assets/${src}" data-caption="${esc(alt)}" aria-label="הגדלת תמונה: ${esc(alt)}">${image(src,alt)}</button><figcaption>${alt}</figcaption></figure>`).join('')}</div></div></section>
   <section class="article-end section-pad"><div class="container article-end-grid"><div class="article-note"><span class="overline">כדאי לזכור</span><h2>${s.noteTitle}</h2><p>${s.note}</p></div><div class="faq" id="faq"><span class="overline">שאלות נפוצות</span><h2>עוד כמה תשובות.</h2>${s.faq.map(([q,a])=>`<details><summary>${q}<span aria-hidden="true">+</span></summary><p>${a}</p></details>`).join('')}</div></div></section>
   <section class="service-cta section-pad"><div class="container service-cta-inner"><div><span class="overline">הפרויקט הבא</span><h2>מתאים גם לעסק שלכם?</h2><p>ספרו לי מה אתם רוצים לבנות, ונבדוק יחד מה הדרך הנכונה להתחיל.</p></div>${waButton('בואו נדבר בוואטסאפ')}</div></section><section class="related section-pad"><div class="container"><span class="overline">עוד פרויקטים</span><h2>אולי יעניין אתכם גם</h2><div class="related-grid">${s.related.map(path=>`<a href="${path}"><span>${relatedName[path]}</span>${icon.arrow}</a>`).join('')}</div></div></section>`;
 }

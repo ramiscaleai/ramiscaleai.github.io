@@ -29,6 +29,7 @@ if (lightbox) {
       }
       lightboxImage.src = button.dataset.full;
       lightboxImage.alt = button.dataset.caption || '';
+      lightboxImage.classList.toggle('trim-report', button.dataset.full.endsWith('/tg_bot_fb_ads.png'));
       caption.textContent = button.dataset.caption || '';
       lightbox.showModal();
     });
@@ -38,6 +39,7 @@ if (lightbox) {
   });
   lightbox.addEventListener('close', () => {
     lightboxImage.removeAttribute('src');
+    lightboxImage.classList.remove('trim-report');
   });
 }
 
